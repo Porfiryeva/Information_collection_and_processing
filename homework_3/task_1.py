@@ -31,9 +31,6 @@ def scan_pages(page, subj, update=True):  # update=True если заполня�
         return
 
     for vacancy in vacancy_list:
-
-        name = vacancy.find('a').getText().replace('\xa0', ' ')
-
         link = vacancy.find('a').get('href')
         if link.find('hh.ru') != -1:
             link = re.search(r'hh.ru\S([^?#]*)', link).group()
@@ -43,6 +40,8 @@ def scan_pages(page, subj, update=True):  # update=True если заполня�
 
         if update and py_vacancy.find_one({'_id': _id}):
             continue
+
+        name = vacancy.find('a').getText().replace('\xa0', ' ')
 
         salary = {'min': None, 'max': None, 'currency': None}
 
