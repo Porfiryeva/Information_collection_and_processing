@@ -9,7 +9,7 @@ class LabirintruSpider(scrapy.Spider):
     start_urls = ['https://www.labirint.ru/search/история/?stype=0&display=table']
 
     def parse(self, response: HtmlResponse):
-        next_page = response.xpath('////div[@class="pagination-next"]/a[@class="pagination-next__text"]/@href').get()
+        next_page = response.xpath('//div[@class="pagination-next"]/a[@class="pagination-next__text"]/@href').get()
         if next_page:
             yield response.follow(next_page, callback=self.parse)
 
