@@ -63,6 +63,7 @@ class InstagramSpider(scrapy.Spider):
             url_followers = f'{self.follow_url}{user_id}/followers/?{urlencode(variables)}'
             yield response.follow(url_followers,
                                   callback=self.followers_parse,
+                                  headers=self.api_headers,
                                   cb_kwargs={'username': username,
                                              'user_id': user_id,
                                              'variables': deepcopy(variables)})
@@ -87,6 +88,7 @@ class InstagramSpider(scrapy.Spider):
             url_followings = f'{self.follow_url}{user_id}/following/?{urlencode(variables)}'
             yield response.follow(url_followings,
                                   callback=self.following_parse,
+                                  headers=self.api_headers,
                                   cb_kwargs={'username': username,
                                              'user_id': user_id,
                                              'variables': deepcopy(variables)})
