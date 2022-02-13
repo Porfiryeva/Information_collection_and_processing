@@ -8,9 +8,9 @@ db = client['insta_follow']
 name = 'techskills_2022'
 
 # подписчики только указанного пользователя
-for follower in db[name].find({'in_follower': True}):
-    pprint(follower)
+followers = [follower for follower in db[name].find({'in_followers': True}, {'name': 1})]
+print(followers)
 
 # подписки только указанного пользователя
-for following in db[name].find({'in_following': True}):
-    pprint(following)
+followings = [following for following in db[name].find({'in_following': True}, {'name': 1})]
+print(followings)
